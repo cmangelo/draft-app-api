@@ -1,4 +1,4 @@
-FROM node:12.4-alpine
+FROM public.ecr.aws/bitnami/node:latest
 
 RUN mkdir /app
 WORKDIR /app
