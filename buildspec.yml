@@ -5,6 +5,8 @@ phases:
     commands:
       - echo Logging in to Dockerhub...
       - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+      - echo Logging in to ECR
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION
   build:
     commands:
       - echo Build started on `date`
