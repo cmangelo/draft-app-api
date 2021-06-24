@@ -5,7 +5,7 @@ const app = express()
 const PORT = 8080
 
 app.get('/test', (req: any, res: any) => {
-  console.log(JSON.stringify(req))
+  console.log(req)
   res.send('hiya')
 });
 
