@@ -1,6 +1,5 @@
 FROM public.ecr.aws/bitnami/node:latest
 
-RUN mkdir /app
 WORKDIR /app
 
 COPY package*.json ./
@@ -11,5 +10,5 @@ RUN npm install
 RUN npm run build
 
 EXPOSE 3000
-# COPY . .
+
 CMD [ "node", "./dist/app.js" ]
