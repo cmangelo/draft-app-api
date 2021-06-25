@@ -1,11 +1,11 @@
-import express from "express"
+import express, { Request } from "express"
 
 const app = express()
 
 const PORT = 8080
 
-app.get('/test', (req: any, res: any) => {
-  console.log(req)
+app.get('/test', (req: Request, res: any) => {
+  console.log(req.headers)
   res.send('hiya')
 });
 
