@@ -1,3 +1,4 @@
+import { RankItem } from "../db/models/RanksItem"
 import { RankingsVersions } from "./player"
 
 export type PlayerCount = {
@@ -6,6 +7,7 @@ export type PlayerCount = {
   wideReceiver: number
   tightEnd: number
   flex: number
+  superflex: number
   defense: number
   kicker: number
   bench: number
@@ -33,6 +35,10 @@ export type DraftPlayerRequest = {
   pickNumber: number
 }
 
+export type DeleteDraftPickRequest = {
+  pickNumber: number
+}
+
 export type JoinDraftRequest = {
   draftPosition: number
 }
@@ -47,11 +53,17 @@ export type DraftPicks = {
 
 export type GetDraftResponse = {
   picks: DraftPicks
+  rankingsVersions: RankingsVersions
   config: DraftConfig
+  draftOrder: DraftOrder
 }
 
 export type UserDraft = {
   draftId: string
   draftDateTime: string
   draftName: string
+}
+
+export type UpdateRanksRequest = {
+  ranks: Array<RankItem>
 }

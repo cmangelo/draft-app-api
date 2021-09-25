@@ -1,5 +1,7 @@
 import express, { Request } from 'express'
 import { draftRouter } from './controller/draft';
+import { ranksRouter } from './controller/ranks';
+import { readFile } from './util/readSosFile';
 
 const app = express()
 app.use(express.json())
@@ -12,7 +14,10 @@ app.get('/test', (req: Request, res: any) => {
 });
 
 app.use('/drafts', draftRouter)
+app.use('/ranks', ranksRouter)
 
 app.listen(PORT, () => {
   console.log('listening on port ' + PORT)
 })
+
+// readFile()

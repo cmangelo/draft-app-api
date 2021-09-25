@@ -1,10 +1,11 @@
 import { Request, Response, Router } from 'express'
 import { createDraftExecutor } from '../executor/createDraft'
+import { deleteDraftPickExecutor } from '../executor/deleteDraftPick'
 import { draftPlayerExecutor } from '../executor/draftPlayer'
 import { getDraftExecutor } from '../executor/getDraft'
 import { getDraftsExecutor } from '../executor/getDrafts'
 import { joinDraftExecutor } from '../executor/joinDraft'
-import { CreateDraftRequest, DraftPlayerRequest, JoinDraftRequest } from '../model/draft'
+import { CreateDraftRequest, DeleteDraftPickRequest, DraftPlayerRequest, JoinDraftRequest } from '../model/draft'
 
 export const draftRouter = Router()
 
@@ -42,3 +43,8 @@ draftRouter.post('/:draftId/picks', async (req: Request, res: Response) => {
   res.status(201).send()
 })
 
+draftRouter.delete('/:draftId/picks/:pickNumber', async (req: Request, res: Response) => {
+  const { draftId, pickNumber } = req.params
+  await deleteDraftPickExecutor(draftId, +pickNumber)
+  res.send()
+})

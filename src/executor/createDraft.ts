@@ -1,5 +1,6 @@
 import { addDraftToUserDrafts, createDraft, getLatestRankingsVersions } from '../db/db'
 import { CreateDraftResponse, DraftConfig, DraftOrder } from '../model/draft'
+import { RankingsVersions } from '../model/player'
 
 export const createDraftExecutor = async (
   userId: string, 
@@ -11,7 +12,15 @@ export const createDraftExecutor = async (
   if (!draftConfig.draftName)
     draftConfig.draftName = `${draftConfig.numDrafters} Person Draft`
 
-  const latestRankingsVersions = await getLatestRankingsVersions()
+  const latestRankingsVersions: RankingsVersions = {
+    QB: 'USER',
+    RB: 'USER',
+    WR: 'USER',
+    TE: 'USER',
+    FLEX: 'USER',
+
+  }
+  // await getLatestRankingsVersions()
 
   const { draftId, draftDateTime } = await createDraft(draftConfig, draftOrder, latestRankingsVersions)
   addDraftToUserDrafts(userId, draftId, draftDateTime, draftConfig.draftName)
